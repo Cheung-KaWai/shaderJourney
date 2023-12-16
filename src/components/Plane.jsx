@@ -1,15 +1,14 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import vertex from "../shaders/vertex.glsl";
 import fragment from "../shaders/fragment.glsl";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { useShaderStore } from "../store/Store";
+import { Vector2 } from "three";
 
 export const Plane = () => {
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-  const aspect = width / height;
   const ref = useRef();
   const { shader } = useShaderStore();
+  const { size } = useThree();
 
   const uniforms = useMemo(
     () => ({
@@ -17,7 +16,7 @@ export const Plane = () => {
         value: 0,
       },
       uResolution: {
-        value: aspect,
+        value: new Vector2(size.width, size.height),
       },
       uStep: {
         value: shader,
@@ -30,10 +29,15 @@ export const Plane = () => {
     ref.current.material.uniforms.uTime = clock.getElapsedTime();
   });
 
+  // change shader example
   useEffect(() => {
     ref.current.material.uniforms.uStep.value = shader;
-    console.log(shader);
   }, [shader]);
+
+  // update resolution uniforms
+  useEffect(() => {
+    uniforms.uResolution.value = new Vector2(size.width, size.height);
+  }, [size]);
 
   return (
     <mesh

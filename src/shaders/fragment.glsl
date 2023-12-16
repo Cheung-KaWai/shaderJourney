@@ -1,22 +1,74 @@
 varying vec2 vUv;
 uniform float uStep;
+uniform vec2 uResolution;
 
-vec3 getPattern(float number,vec2 uv){
+vec3 WHITE=vec3(1.);
+vec3 BLACK=vec3(0.);
+vec3 GREEN=vec3(0.,1.,0.);
+
+vec3 drawFunction(vec2 uv,vec3 grid){
+  float linearLine=smoothstep(0.,1.,abs(uv.y-uv.x));
+  
+  // defines how much is 1 cycle
+  vec2 pos=uv;
+  float value2=sin(pos.x/10.)*20.;
+  float functionLine2=smoothstep(0.,1.,abs(pos.y-value2));
+  
+  grid=mix(BLACK,grid,linearLine);
+  grid=mix(BLACK,grid,functionLine2);
+  
+  return grid;
+}
+
+vec3 drawGrid(float cellDimensions){
+  // center uv so when the window resize the grid resizes from the middle
+  vec2 centeredUV=vUv-.5;
+  // remap uv to absolute pixels
+  vec2 uvPixels=centeredUV*uResolution;
+  // define gridlines per 10px
+  float horizontalLines=mod(uvPixels.x,cellDimensions);
+  float verticalLines=mod(uvPixels.y,cellDimensions);
+  float gridLines=min(horizontalLines,verticalLines);
+  
+  // draw lines of 1px
+  float lines=smoothstep(0.,1.,gridLines);
+  vec3 grid=vec3(lines);
+  
+  // define grid axis
+  float axisX=smoothstep(0.,1.,abs(uvPixels.y));
+  float axisY=smoothstep(0.,1.,abs(uvPixels.x));
+  
+  // draw axis
+  grid=mix(BLACK,grid,axisX);
+  grid=mix(BLACK,grid,axisY);
+  
+  //draw lineair line
+  grid=drawFunction(uvPixels,grid);
+  
+  return grid;
+}
+
+vec3 getPattern(float number){
+  
   if(number==0.){
-    // simple line in the middle
-    float line=smoothstep(0.,.01,abs(vUv.y-.5));
-    return mix(vec3(0.),vec3(1.),line);
+    // taking the abs of vUv.y -0.5 will generate a number between 0 and 0.5 an use a smoothstep to
+    // mix using the line values will use a white color for line values that are 1 and use the black color for lines values 0
+    float line=smoothstep(0.,.002,abs(vUv.y-.5));
+    return mix(BLACK,WHITE,line);
   }else if(number==1.){
-    float wave=.5+sin(2.*3.14159*vUv.x*10.);// Adjust the frequency by multiplying vUv.x by a factor
-    float line=smoothstep(.4,.6,abs(vUv.y-wave));
-    // Set the color based on the line
-    return mix(vec3(0.),vec3(1.,0.,0.),line);
+    // taking the abs of vUv.y - vUv.x will generate a straight lineair line
+    float line=smoothstep(0.,.002,(abs(vUv.y-vUv.x)));
+    return mix(BLACK,WHITE,line);
+  }else if(number==2.){
+    vec3 grid=drawGrid(10.);
+    return grid;
   }
 }
 
 void main(){
   vec2 uvs=vUv;
-  vec3 color=getPattern(uStep,uvs);
+  vec3 color=vec3(0,uvs.x,uvs.y);
+  color=getPattern(uStep);
   
   gl_FragColor=vec4(color,1.);
 }
