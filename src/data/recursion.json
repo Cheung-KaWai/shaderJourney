@@ -1,0 +1,38 @@
+[
+  {
+    "name": "fragment manipulation",
+    "items": [
+      {
+        "name": "basics patterns",
+        "items": [
+          {
+            "name": "uv.x"
+          },
+          {
+            "name": "uv.y"
+          },
+          {
+            "name": "inverse uv.y"
+          },
+          {
+            "name": "strength uv.y"
+          }
+        ]
+      },
+      {
+        "name": "patterns in screen space pixels",
+        "items": [
+          {
+            "name": "horizontal line"
+          },
+          {
+            "name": "lineair line"
+          },
+          {
+            "name": "grid 10x10"
+          }
+        ]
+      }
+    ]
+  }
+]

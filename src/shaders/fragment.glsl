@@ -49,19 +49,28 @@ vec3 drawGrid(float cellDimensions){
 }
 
 vec3 getPattern(float number){
+  if(number==1.1){
+    return vec3(vUv.x);
+  }else if(number==1.2){
+    return vec3(vUv.y);
+  }else if(number==1.3){
+    return 1.-vec3(vUv.y);
+  }else if(number==1.4){
+    float strength=vUv.y*10.;
+    return vec3(strength);
+  }
   
-  if(number==0.){
+  else if(number==2.1){
     // taking the abs of vUv.y -0.5 will generate a number between 0 and 0.5 an use a smoothstep to
     // mix using the line values will use a white color for line values that are 1 and use the black color for lines values 0
     float line=smoothstep(0.,.002,abs(vUv.y-.5));
     return mix(BLACK,WHITE,line);
-  }else if(number==1.){
+  }else if(number==2.2){
     // taking the abs of vUv.y - vUv.x will generate a straight lineair line
     float line=smoothstep(0.,.002,(abs(vUv.y-vUv.x)));
     return mix(BLACK,WHITE,line);
-  }else if(number==2.){
-    vec3 grid=drawGrid(10.);
-    return grid;
+  }else if(number==2.3){
+    return drawGrid(10.);
   }
 }
 
