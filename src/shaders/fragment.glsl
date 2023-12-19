@@ -58,6 +58,29 @@ vec3 getPattern(float number){
   }else if(number==1.4){
     float strength=vUv.y*10.;
     return vec3(strength);
+  }else if(number==1.5){
+    float pattern=mod(vUv.y*10.,1.);
+    return vec3(pattern);
+  }else if(number==1.6){
+    float pattern=mod(vUv.y*10.,1.);
+    pattern=step(.5,pattern);
+    return vec3(pattern);
+  }else if(number==1.7){
+    float verticalLines=step(.8,mod(vUv.x*40.,1.));
+    float horizontalLines=step(.8,mod(vUv.y*40.,1.));
+    float dots=verticalLines*horizontalLines;
+    return vec3(dots);
+  }else if(number==1.8){
+    float horizontalBar=step(.4,mod(vUv.x*30.-.2,1.));
+    float verticalBar=step(.8,mod(vUv.y*30.,1.));
+    float xAxis=verticalBar*horizontalBar;
+    
+    float horizontalBarY=step(.8,mod(vUv.x*30.,1.));
+    float verticalBarY=step(.4,mod(vUv.y*30.-.2,1.));
+    
+    float yAxis=verticalBarY*horizontalBarY;
+    return vec3(yAxis+xAxis);
+    
   }
   
   else if(number==2.1){

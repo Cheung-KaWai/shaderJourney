@@ -16,6 +16,18 @@
           },
           {
             "name": "strength uv.y"
+          },
+          {
+            "name": "Repeat pattern"
+          },
+          {
+            "name": "Repeat pattern step"
+          },
+          {
+            "name": "dotted grid"
+          },
+          {
+            "name": "cross grid"
           }
         ]
       },
