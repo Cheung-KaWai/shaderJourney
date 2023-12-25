@@ -25,7 +25,7 @@ vec3 drawGrid(float cellDimensions){
   vec2 centeredUV=vUv-.5;
   // remap uv to absolute pixels
   vec2 uvPixels=centeredUV*uResolution;
-  // define gridlines per 10px
+  // define gridlines per cellDimensions pixels
   float horizontalLines=mod(uvPixels.x,cellDimensions);
   float verticalLines=mod(uvPixels.y,cellDimensions);
   float gridLines=min(horizontalLines,verticalLines);
@@ -49,28 +49,28 @@ vec3 drawGrid(float cellDimensions){
 }
 
 vec3 getPattern(float number){
-  if(number==1.1){
+  if(number==1.01){
     return vec3(vUv.x);
-  }else if(number==1.2){
+  }else if(number==1.02){
     return vec3(vUv.y);
-  }else if(number==1.3){
+  }else if(number==1.03){
     return 1.-vec3(vUv.y);
-  }else if(number==1.4){
+  }else if(number==1.04){
     float strength=vUv.y*10.;
     return vec3(strength);
-  }else if(number==1.5){
+  }else if(number==1.05){
     float pattern=mod(vUv.y*10.,1.);
     return vec3(pattern);
-  }else if(number==1.6){
+  }else if(number==1.06){
     float pattern=mod(vUv.y*10.,1.);
     pattern=step(.5,pattern);
     return vec3(pattern);
-  }else if(number==1.7){
+  }else if(number==1.07){
     float verticalLines=step(.8,mod(vUv.x*40.,1.));
     float horizontalLines=step(.8,mod(vUv.y*40.,1.));
     float dots=verticalLines*horizontalLines;
     return vec3(dots);
-  }else if(number==1.8){
+  }else if(number==1.08){
     float horizontalBar=step(.4,mod(vUv.x*30.-.2,1.));
     float verticalBar=step(.8,mod(vUv.y*30.,1.));
     float xAxis=verticalBar*horizontalBar;
@@ -80,19 +80,43 @@ vec3 getPattern(float number){
     
     float yAxis=verticalBarY*horizontalBarY;
     return vec3(yAxis+xAxis);
-    
+  }else if(number==1.09){
+    float verticalLine=smoothstep(0.,.5,abs(vUv.x-.5));
+    float horizontalLine=smoothstep(0.,.5,abs(vUv.y-.5));
+    float crossLine=min(verticalLine,horizontalLine);
+    return vec3(crossLine);
+  }else if(number==1.10){
+    float verticalLine=smoothstep(0.,.5,abs(vUv.x-.5));
+    float horizontalLine=smoothstep(0.,.5,abs(vUv.y-.5));
+    float crossLine=max(verticalLine,horizontalLine);
+    return vec3(crossLine);
+  }
+  else if(number==1.11){
+    float verticalLine=smoothstep(0.,.5,abs(vUv.x-.5));
+    float horizontalLine=smoothstep(0.,.5,abs(vUv.y-.5));
+    float crossLine=max(verticalLine,horizontalLine);
+    float square=step(.3,crossLine);
+    return vec3(square);
+  }
+  else if(number==1.12){
+    float verticalLine=smoothstep(0.,.5,abs(vUv.x-.5));
+    float horizontalLine=smoothstep(0.,.5,abs(vUv.y-.5));
+    float crossLine=max(verticalLine,horizontalLine);
+    float square=1.-step(.3,crossLine);
+    float innerSquare=step(.2,crossLine);
+    return vec3(square*innerSquare);
   }
   
-  else if(number==2.1){
+  else if(number==2.01){
     // taking the abs of vUv.y -0.5 will generate a number between 0 and 0.5 an use a smoothstep to
     // mix using the line values will use a white color for line values that are 1 and use the black color for lines values 0
     float line=smoothstep(0.,.002,abs(vUv.y-.5));
     return mix(BLACK,WHITE,line);
-  }else if(number==2.2){
+  }else if(number==2.02){
     // taking the abs of vUv.y - vUv.x will generate a straight lineair line
     float line=smoothstep(0.,.002,(abs(vUv.y-vUv.x)));
     return mix(BLACK,WHITE,line);
-  }else if(number==2.3){
+  }else if(number==2.03){
     return drawGrid(10.);
   }
 }

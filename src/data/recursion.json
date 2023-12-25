@@ -28,6 +28,21 @@
           },
           {
             "name": "cross grid"
+          },
+          {
+            "name": "min uv"
+          },
+          {
+            "name": "max uv"
+          },
+          {
+            "name": "black square"
+          },
+          {
+            "name": "square border"
+          },
+          {
+            "name": "floor uv"
           }
         ]
       },

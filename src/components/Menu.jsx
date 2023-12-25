@@ -9,11 +9,11 @@ const MenuItem = (props) => {
   const nestedList = (props.items || []).map((item, index) => (
     <MenuItem
       key={index}
-      level={`${props.level !== "" ? props.level + "." : ""}${index + 1}`}
+      level={`${props.level !== "" ? props.level + "." : ""}${(index + 1).toString().padStart(2, "0")}`}
       {...item}
       onClick={(e) => {
         e.stopPropagation();
-        const shaderIndex = parseFloat(`${props.level !== "" ? props.level + "." : ""}${index + 1}`);
+        const shaderIndex = parseFloat(`${props.level !== "" ? props.level + "." : ""}${(index + 1).toString().padStart(2, "0")}`);
         if (!Number.isInteger(shaderIndex)) {
           update("shader", shaderIndex);
         }
@@ -21,10 +21,13 @@ const MenuItem = (props) => {
     />
   ));
 
+  // Remove leading zero from the whole number part
+  const formattedLevel = props.level.replace(/^0+/, "");
+
   return (
     <>
       <li onClick={props.onClick}>
-        {props.level + " " + props.name}
+        {formattedLevel + " " + props.name}
         {nestedList.length > 0 && <NestedList>{nestedList}</NestedList>}
       </li>
     </>
