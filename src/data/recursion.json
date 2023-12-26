@@ -42,7 +42,28 @@
             "name": "square border"
           },
           {
-            "name": "floor uv"
+            "name": "floor uv.x"
+          },
+          {
+            "name": "grid floor uv"
+          },
+          {
+            "name": "noise uv"
+          },
+          {
+            "name": "grid floor noise uv"
+          },
+          {
+            "name": "tilted grid floor noise uv"
+          },
+          {
+            "name": "length"
+          },
+          {
+            "name": "distance"
+          },
+          {
+            "name": "light lense effect"
           }
         ]
       },

@@ -2,6 +2,8 @@ varying vec2 vUv;
 uniform float uStep;
 uniform vec2 uResolution;
 
+#include helpers.glsl;
+
 vec3 WHITE=vec3(1.);
 vec3 BLACK=vec3(0.);
 vec3 GREEN=vec3(0.,1.,0.);
@@ -105,6 +107,63 @@ vec3 getPattern(float number){
     float square=1.-step(.3,crossLine);
     float innerSquare=step(.2,crossLine);
     return vec3(square*innerSquare);
+  }
+  else if(number==1.13){
+    float verticalLines=vUv.x*10.;
+    float roundDownVerticalLines=floor(verticalLines);
+    float remappedVerticalLines=remap(roundDownVerticalLines,0.,10.,0.,1.);
+    return vec3(remappedVerticalLines);
+  }
+  else if(number==1.14){
+    float verticalLines=vUv.x*10.;
+    float roundDownVerticalLines=floor(verticalLines);
+    float remappedVerticalLines=remap(roundDownVerticalLines,0.,10.,0.,1.);
+    
+    float horizontalLines=vUv.y*10.;
+    float roundDownHorizontalLines=floor(horizontalLines);
+    float remappedHorizontalLines=remap(roundDownHorizontalLines,0.,10.,0.,1.);
+    
+    return vec3(remappedVerticalLines*remappedHorizontalLines);
+  }
+  else if(number==1.15){
+    float noiseUv=random(vUv);
+    
+    return vec3(noiseUv);
+  }
+  else if(number==1.16){
+    float verticalLines=vUv.x*10.;
+    float roundDownVerticalLines=floor(verticalLines);
+    float remappedVerticalLines=remap(roundDownVerticalLines,0.,10.,0.,1.);
+    
+    float horizontalLines=vUv.y*10.;
+    float roundDownHorizontalLines=floor(horizontalLines);
+    float remappedHorizontalLines=remap(roundDownHorizontalLines,0.,10.,0.,1.);
+    
+    vec2 gridUv=vec2(remappedVerticalLines,remappedHorizontalLines);
+    float noiseGridUv=random(gridUv);
+    return vec3(noiseGridUv);
+  }
+  else if(number==1.17){
+    float verticalLines=vUv.x*10.;
+    float roundDownVerticalLines=floor(verticalLines);
+    float remappedVerticalLines=remap(roundDownVerticalLines,0.,10.,0.,1.);
+    
+    float horizontalLines=(vUv.y+vUv.x)*10.;
+    float roundDownHorizontalLines=floor(horizontalLines);
+    float remappedHorizontalLines=remap(roundDownHorizontalLines,0.,10.,0.,1.);
+    
+    vec2 gridUv=vec2(remappedVerticalLines,remappedHorizontalLines);
+    float noiseGridUv=random(gridUv);
+    return vec3(noiseGridUv);
+  }
+  else if(number==1.18){
+    return vec3(length(vUv));
+  }
+  else if(number==1.19){
+    return vec3(distance(vUv,vec2(.5)));
+  }
+  else if(number==1.20){
+    return vec3(.015/(distance(vUv,vec2(.5))));
   }
   
   else if(number==2.01){
