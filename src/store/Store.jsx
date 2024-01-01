@@ -2,7 +2,10 @@ import { mountStoreDevtool } from "simple-zustand-devtools";
 import { create } from "zustand";
 
 export const useShaderStore = create((set) => ({
-  shader: 1.01,
+  shader: {
+    index: 1.01,
+    name: "uv.x",
+  },
   update: (prop, value) => set({ [prop]: value }),
 }));
 

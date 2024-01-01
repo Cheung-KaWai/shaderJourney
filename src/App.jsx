@@ -6,24 +6,18 @@ import styled from "styled-components";
 import { Container } from "./components/Container";
 import { Menu } from "./components/Menu";
 import { Plane } from "./components/Plane";
+import { Code } from "./components/Code";
 function App() {
   return (
     <Container>
       <Menu />
       <CanvasContainer>
         <Canvas>
-          <OrthographicCamera
-            position={[0, 0, 1]}
-            left={-0.5}
-            right={0.5}
-            top={0.5}
-            bottom={-0.5}
-            makeDefault
-            manual
-          />
+          <OrthographicCamera position={[0, 0, 1]} left={-0.5} right={0.5} top={0.5} bottom={-0.5} makeDefault manual />
           <Plane />
         </Canvas>
       </CanvasContainer>
+      <Code />
     </Container>
   );
 }

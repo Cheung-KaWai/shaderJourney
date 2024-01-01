@@ -6,64 +6,169 @@
         "name": "basics patterns",
         "items": [
           {
-            "name": "uv.x"
+            "name": "uv.x",
+            "vertex": "",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  vec3 color=vec3(vUv.x);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
-            "name": "uv.y"
+            "name": "uv.y",
+            "vertex": "",
+            "fragment": ""
           },
           {
-            "name": "inverse uv.y"
+            "name": "inverse uv.y",
+            "vertex": "",
+            "fragment": ""
           },
           {
-            "name": "strength uv.y"
+            "name": "strength uv.y",
+            "vertex": "",
+            "fragment": ""
           },
           {
-            "name": "Repeat pattern"
+            "name": "Repeat pattern",
+            "vertex": "",
+            "fragment": ""
           },
           {
-            "name": "Repeat pattern step"
+            "name": "Repeat pattern step",
+            "vertex": "",
+            "fragment": ""
           },
           {
-            "name": "dotted grid"
+            "name": "dotted grid",
+            "vertex": "",
+            "fragment": ""
           },
           {
-            "name": "cross grid"
+            "name": "cross grid",
+            "vertex": "",
+            "fragment": ""
           },
           {
-            "name": "min uv"
+            "name": "min uv",
+            "vertex": "",
+            "fragment": ""
           },
           {
-            "name": "max uv"
+            "name": "max uv",
+            "vertex": "",
+            "fragment": ""
           },
           {
-            "name": "black square"
+            "name": "black square",
+            "vertex": "",
+            "fragment": ""
           },
           {
-            "name": "square border"
+            "name": "square border",
+            "vertex": "",
+            "fragment": ""
           },
           {
-            "name": "floor uv.x"
+            "name": "floor uv.x",
+            "vertex": "",
+            "fragment": ""
           },
           {
-            "name": "grid floor uv"
+            "name": "grid floor uv",
+            "vertex": "",
+            "fragment": ""
           },
           {
-            "name": "noise uv"
+            "name": "noise uv",
+            "vertex": "",
+            "fragment": ""
           },
           {
-            "name": "grid floor noise uv"
+            "name": "grid floor noise uv",
+            "vertex": "",
+            "fragment": ""
           },
           {
-            "name": "tilted grid floor noise uv"
+            "name": "tilted grid floor noise uv",
+            "vertex": "",
+            "fragment": ""
           },
           {
-            "name": "length"
+            "name": "length",
+            "vertex": "",
+            "fragment": ""
           },
           {
-            "name": "distance"
+            "name": "distance",
+            "vertex": "",
+            "fragment": ""
           },
           {
-            "name": "light lense effect"
+            "name": "light lense effect",
+            "vertex": "",
+            "fragment": ""
+          },
+          {
+            "name": "star effect",
+            "vertex": "",
+            "fragment": ""
+          },
+          {
+            "name": "rotated star",
+            "vertex": "",
+            "fragment": ""
+          },
+          {
+            "name": "circle",
+            "vertex": "",
+            "fragment": ""
+          },
+          {
+            "name": "ring",
+            "vertex": "",
+            "fragment": ""
+          },
+          {
+            "name": "distorted ring",
+            "vertex": "",
+            "fragment": ""
+          },
+          {
+            "name": "atan",
+            "vertex": "",
+            "fragment": ""
+          },
+          {
+            "name": "centered atan",
+            "vertex": "",
+            "fragment": ""
+          },
+          {
+            "name": "remapped atan",
+            "vertex": "",
+            "fragment": ""
+          },
+          {
+            "name": "stripes",
+            "vertex": "",
+            "fragment": ""
+          },
+          {
+            "name": "wobble circle",
+            "vertex": "",
+            "fragment": ""
+          },
+          {
+            "name": "perlin noise",
+            "vertex": "",
+            "fragment": ""
+          },
+          {
+            "name": "perlin noise plasma",
+            "vertex": "",
+            "fragment": ""
+          },
+          {
+            "name": "perlin noise layers",
+            "vertex": "",
+            "fragment": ""
           }
         ]
       },
@@ -71,13 +176,19 @@
         "name": "patterns in screen space pixels",
         "items": [
           {
-            "name": "horizontal line"
+            "name": "horizontal line",
+            "vertex": "",
+            "fragment": ""
           },
           {
-            "name": "lineair line"
+            "name": "lineair line",
+            "vertex": "",
+            "fragment": ""
           },
           {
-            "name": "grid 10x10"
+            "name": "grid 10x10",
+            "vertex": "",
+            "fragment": ""
           }
         ]
       }

@@ -15,7 +15,10 @@ const MenuItem = (props) => {
         e.stopPropagation();
         const shaderIndex = parseFloat(`${props.level !== "" ? props.level + "." : ""}${(index + 1).toString().padStart(2, "0")}`);
         if (!Number.isInteger(shaderIndex)) {
-          update("shader", shaderIndex);
+          update("shader", {
+            index: shaderIndex,
+            name: item.name,
+          });
         }
       }}
     />
@@ -39,11 +42,7 @@ export const Menu = () => {
     <MenuContainer>
       <NestedList>
         {recursionData.map((props, index) => (
-          <MenuItem
-            {...props}
-            key={index}
-            level={""}
-          />
+          <MenuItem {...props} key={index} level={""} />
         ))}
       </NestedList>
     </MenuContainer>

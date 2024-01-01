@@ -165,7 +165,88 @@ vec3 getPattern(float number){
   else if(number==1.20){
     return vec3(.015/(distance(vUv,vec2(.5))));
   }
+  else if(number==1.21){
+    // in order to strech it centered you first need to center it by substracting 0.5, then apply the scale (number bigger than 1) and center it again by adding 0.5
+    float horizontalElipse=.15/(distance(vec2(vUv.x,(vUv.y-.5)*10.+.5),vec2(.5)));
+    float verticalEllipse=.15/(distance(vec2((vUv.x-.5)*10.+.5,vUv.y),vec2(.5)));
+    return vec3(verticalEllipse*horizontalElipse);
+  }
+  else if(number==1.22){
+    vec2 rotatedUv=rotate(vUv,PI/4.,vec2(.5));
+    // in order to strech it centered you first need to center it by substracting 0.5, then apply the scale (number bigger than 1) and center it again by adding 0.5
+    float horizontalElipse=.15/(distance(vec2(rotatedUv.x,(rotatedUv.y-.5)*10.+.5),vec2(.5)));
+    float verticalEllipse=.15/(distance(vec2((rotatedUv.x-.5)*10.+.5,rotatedUv.y),vec2(.5)));
+    return vec3(verticalEllipse*horizontalElipse);
+  }
+  else if(number==1.23){
+    // center and multiply by resolution
+    vec2 pixelsUv=(vUv-.5)*uResolution;
+    
+    float circle=step(100.,distance(pixelsUv,vec2(0.)));
+    return vec3(circle);
+  }
+  else if(number==1.24){
+    // center and multiply by resolution
+    vec2 pixelsUv=(vUv-.5)*uResolution;
+    
+    float circle=1.-smoothstep(0.,10.,abs(distance(pixelsUv,vec2(0.))-300.));
+    return vec3(circle);
+  }
+  else if(number==1.25){
+    // center and multiply by resolution
+    vec2 distoredtedUv=vec2(vUv.x+sin(20.*vUv.y)*.1,vUv.y+sin(20.*vUv.x)*.1);
+    vec2 pixelsUv=(distoredtedUv-.5)*uResolution;
+    
+    float circle=1.-smoothstep(0.,10.,abs(distance(pixelsUv,vec2(0.))-300.));
+    return vec3(circle);
+  }
+  else if(number==1.26){
+    // gets the angle of the vUv between -PI and PI
+    return vec3(atan(vUv.x,vUv.y));
+  }
+  else if(number==1.27){
+    // gets the angle of the vUv -PI and PI centered
+    return vec3(atan(vUv.x-.5,vUv.y-.5));
+  }
+  else if(number==1.28){
+    float angle=atan(vUv.x-.5,vUv.y-.5);
+    angle=remap(angle,-PI,PI,0.,1.);
+    return vec3(angle);
+  }
+  else if(number==1.29){
+    float angle=atan(vUv.x-.5,vUv.y-.5);
+    angle=remap(angle,-PI,PI,0.,1.);
+    float strength=mod(angle*20.,1.);
+    return vec3(strength);
+  }
+  else if(number==1.30){
+    vec2 pixelsUv=(vUv-.5)*uResolution;
+    
+    float angle=atan(pixelsUv.x,pixelsUv.y);
+    angle=remap(angle,-PI,PI,0.,1.);
+    float radius=100.+sin(angle*100.)*5.;
+    float strength=1.-step(1.,abs(distance(pixelsUv,vec2(0.))-radius));
+    
+    return vec3(strength);
+  }
+  else if(number==1.31){
+    float strength=cnoise(vUv*10.);
+    
+    return vec3(strength);
+  }
+  else if(number==1.32){
+    float strength=1.-abs(cnoise(vUv*10.));
+    
+    return vec3(strength);
+  }
   
+  else if(number==1.33){
+    float strength=sin(cnoise(vUv*10.)*20.);
+    
+    return vec3(strength);
+  }
+  
+  // section 2
   else if(number==2.01){
     // taking the abs of vUv.y -0.5 will generate a number between 0 and 0.5 an use a smoothstep to
     // mix using the line values will use a white color for line values that are 1 and use the black color for lines values 0
@@ -178,6 +259,7 @@ vec3 getPattern(float number){
   }else if(number==2.03){
     return drawGrid(10.);
   }
+  
 }
 
 void main(){

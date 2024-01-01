@@ -19,7 +19,7 @@ export const Plane = () => {
         value: new Vector2(size.width, size.height),
       },
       uStep: {
-        value: shader,
+        value: shader.index,
       },
     }),
     []
@@ -31,7 +31,7 @@ export const Plane = () => {
 
   // change shader example
   useEffect(() => {
-    ref.current.material.uniforms.uStep.value = shader;
+    ref.current.material.uniforms.uStep.value = shader.index;
   }, [shader]);
 
   // update resolution uniforms
@@ -40,16 +40,9 @@ export const Plane = () => {
   }, [size]);
 
   return (
-    <mesh
-      ref={ref}
-      position={[0, 0, 0]}
-    >
+    <mesh ref={ref} position={[0, 0, 0]}>
       <planeGeometry args={[1, 1]} />
-      <shaderMaterial
-        vertexShader={vertex}
-        fragmentShader={fragment}
-        uniforms={uniforms}
-      />
+      <shaderMaterial vertexShader={vertex} fragmentShader={fragment} uniforms={uniforms} />
     </mesh>
   );
 };
