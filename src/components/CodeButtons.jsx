@@ -1,17 +1,36 @@
 import React from "react";
 import styled from "styled-components";
 import { useShaderStore } from "../store/Store";
+import { themeColors } from "../lib/color";
+import recursionData from "../data/recursion.json";
 
 export const CodeButtons = () => {
-  const { code, updateObject } = useShaderStore();
+  const { code, updateObject, shader } = useShaderStore();
+
+  const handleCopyClipboard = async () => {
+    const data = findElementByName(recursionData, shader.name);
+
+    try {
+      await navigator.clipboard.writeText(data[code.file === 0 ? "fragment" : "vertex"]);
+    } catch (err) {
+      console.error("Unable to copy to clipboard", err);
+    }
+  };
 
   return (
     <CodeButtonsContainer>
-      <button onClick={() => updateObject("code", "show", !code.show)}>show code</button>
+      <Button $selected={code.show} onClick={() => updateObject("code", "show", !code.show)}>
+        Show code
+      </Button>
       {code.show && (
         <>
-          <button onClick={() => updateObject("code", "file", 1)}>vertex</button>
-          <button onClick={() => updateObject("code", "file", 0)}>fragment</button>
+          <Button $selected={code.file === 1} onClick={() => updateObject("code", "file", 1)}>
+            vertex.glsl
+          </Button>
+          <Button $selected={code.file === 0} onClick={() => updateObject("code", "file", 0)}>
+            fragment.glsl
+          </Button>
+          <Button onClick={handleCopyClipboard}>Copy code</Button>
         </>
       )}
     </CodeButtonsContainer>
@@ -24,5 +43,20 @@ const CodeButtonsContainer = styled.div`
   z-index: 2;
   top: 2rem;
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
+  width: calc(100svw - 35rem);
+`;
+
+const Button = styled.button`
+  background-color: transparent;
+  font-family: "Karla", sans-serif;
+  border: none;
+  color: ${(props) => (props.$selected ? themeColors.pink : "#fff")};
+  font-size: 1.4rem;
+  font-weight: 200;
+  cursor: pointer;
+
+  &:last-child {
+    margin-left: auto;
+  }
 `;

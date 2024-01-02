@@ -32,7 +32,7 @@ const CodeContainer = styled.div`
   left: 0;
   top: ${(props) => (props.$showCode ? 0 : "100%")};
   transition: all 0.5s ease-in-out;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(47, 58, 81, 0.95);
   padding: 2.5rem 2rem;
   backdrop-filter: blur(0.5rem);
   overflow: scroll;
