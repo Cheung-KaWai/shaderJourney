@@ -1,57 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import recursionData from "../data/recursion.json";
 import { findElementByName } from "../lib/functions";
 import { useShaderStore } from "../store/Store";
 import SyntaxHighlighter from "react-syntax-highlighter";
+import { themeColors } from "../lib/color";
 
 export const Code = () => {
-  const { shader } = useShaderStore();
-  const [showCode, setShowCode] = useState(false);
-  const [file, setFile] = useState(0);
+  const { shader, code } = useShaderStore();
 
   const fragment = findElementByName(recursionData, shader.name).fragment ?? null;
   const vertex = findElementByName(recursionData, shader.name).vertex ?? null;
-
   const codes = [fragment, vertex];
 
   return (
     <>
-      <CodeButtons>
-        {showCode && (
-          <>
-            <button onClick={() => setFile(1)}>vertex</button>
-            <button onClick={() => setFile(0)}>fragment</button>
-          </>
-        )}
-        <button onClick={() => setShowCode((prev) => !prev)}>show code</button>
-      </CodeButtons>
-      <CodeContainer $showCode={showCode}>
+      <CodeContainer $showCode={code.show}>
         <SyntaxHighlighter language="glsl" useInlineStyles={false} showLineNumbers>
-          {codes[file] === "" ? "code not available yet" : codes[file]}
+          {codes[code.file] === "" ? "code not available yet" : codes[code.file]}
         </SyntaxHighlighter>
       </CodeContainer>
     </>
   );
 };
 
-const CodeButtons = styled.div`
-  position: absolute;
-  right: 0;
-  z-index: 2;
-  display: flex;
-  gap: 1rem;
-`;
-
 const CodeContainer = styled.div`
-  width: calc((100svw - 20rem) / 2);
-  height: 100svh;
+  width: 100%;
+  height: 100%;
+
   position: absolute;
-  right: 0;
-  transform: translateX(${(props) => (props.$showCode ? "0" : "100%")});
-  transition: transform 0.3s ease-in-out;
-  background-color: rgba(255, 255, 255, 0.2);
+  left: 0;
+  top: ${(props) => (props.$showCode ? 0 : "100%")};
+  transition: all 0.5s ease-in-out;
+  background-color: rgba(255, 255, 255, 0.5);
   padding: 2.5rem 2rem;
   backdrop-filter: blur(0.5rem);
+  overflow: scroll;
+  /* border: 3px solid ${themeColors.darkBlue};  */
+  /* border-radius: 3rem; */
   overflow: scroll;
 `;

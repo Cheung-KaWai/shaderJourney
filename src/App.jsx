@@ -8,19 +8,21 @@ import { Menu } from "./components/Menu";
 import { Plane } from "./components/Plane";
 import { Code } from "./components/Code";
 import { themeColors } from "./lib/color";
+import { CodeButtons } from "./components/CodeButtons";
 function App() {
   return (
     <Container>
       <Menu />
       <OuterContainer>
+        <CodeButtons />
         <CanvasContainer>
           <Canvas>
             <OrthographicCamera position={[0, 0, 1]} left={-0.5} right={0.5} top={0.5} bottom={-0.5} makeDefault manual />
             <Plane />
           </Canvas>
+          <Code />
         </CanvasContainer>
       </OuterContainer>
-      <Code />
     </Container>
   );
 }
@@ -32,12 +34,15 @@ const OuterContainer = styled.div`
   height: 100%;
   padding: 5rem;
   background-color: ${themeColors.grayBlue};
+  position: relative;
+  overflow: hidden;
 `;
 
 const CanvasContainer = styled.div`
   width: 100%;
   height: 100%;
-  border-radius: 2rem;
+  position: relative;
+  /* border-radius: 2rem; */
   overflow: hidden;
   border: 3px solid ${themeColors.darkBlue};
 `;

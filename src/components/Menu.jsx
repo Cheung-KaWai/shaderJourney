@@ -56,7 +56,7 @@ export const Menu = () => {
 };
 
 const MenuContainer = styled.nav`
-  width: 20rem;
+  width: 25rem;
   background-color: ${themeColors.darkBlue};
   flex-shrink: 0;
   color: white;

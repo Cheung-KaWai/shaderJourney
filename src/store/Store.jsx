@@ -6,7 +6,19 @@ export const useShaderStore = create((set) => ({
     index: 1.01,
     name: "uv.x",
   },
-  update: (prop, value) => set({ [prop]: value }),
+  code: {
+    show: false,
+    file: 0,
+  },
+  update: (prop, value) => set((state) => ({ [prop]: value })),
+  updateObject: (object, field, value) =>
+    set(
+      (state) =>
+        (state = {
+          ...state,
+          [object]: { ...state[object], [field]: value },
+        })
+    ),
 }));
 
 if (process.env.NODE_ENV === "development") {
