@@ -9,6 +9,8 @@ import { Plane } from "./components/Plane";
 import { Code } from "./components/Code";
 import { themeColors } from "./lib/color";
 import { CodeButtons } from "./components/CodeButtons";
+import { Links } from "./components/Links";
+
 function App() {
   return (
     <Container>
@@ -23,6 +25,7 @@ function App() {
           <Code />
         </CanvasContainer>
       </OuterContainer>
+      <Links />
     </Container>
   );
 }
