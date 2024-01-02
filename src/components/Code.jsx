@@ -20,15 +20,15 @@ export const Code = () => {
       <CodeButtons>
         {showCode && (
           <>
-            <button onClick={() => setFile(0)}>fragment</button>
             <button onClick={() => setFile(1)}>vertex</button>
+            <button onClick={() => setFile(0)}>fragment</button>
           </>
         )}
         <button onClick={() => setShowCode((prev) => !prev)}>show code</button>
       </CodeButtons>
       <CodeContainer $showCode={showCode}>
         <SyntaxHighlighter language="glsl" useInlineStyles={false} showLineNumbers>
-          {codes[file]}
+          {codes[file] === "" ? "code not available yet" : codes[file]}
         </SyntaxHighlighter>
       </CodeContainer>
     </>
@@ -53,4 +53,5 @@ const CodeContainer = styled.div`
   background-color: rgba(255, 255, 255, 0.2);
   padding: 2.5rem 2rem;
   backdrop-filter: blur(0.5rem);
+  overflow: scroll;
 `;

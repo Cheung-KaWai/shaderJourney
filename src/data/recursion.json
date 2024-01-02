@@ -7,168 +7,168 @@
         "items": [
           {
             "name": "uv.x",
-            "vertex": "",
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
             "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  vec3 color=vec3(vUv.x);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "uv.y",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  vec3 color=vec3(vUv.y);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "inverse uv.y",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  vec3 color = 1.-vec3(vUv.y);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "strength uv.y",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  float strength=vUv.y*10.;\n  vec3 color = vec3(strength);\n  \n gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "Repeat pattern",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  float pattern=mod(vUv.y*10.,1.);\n  vec3 color = vec3(pattern);\n  \n gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "Repeat pattern step",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  float pattern=mod(vUv.y*10.,1.);\n  pattern=step(.5,pattern);\n  vec3 color = vec3(pattern);\n  \n gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "dotted grid",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  float verticalLines=step(.8,mod(vUv.x*40.,1.));\n  float horizontalLines=step(.8,mod(vUv.y*40.,1.));\n  float dots=verticalLines*horizontalLines;\n  vec3 color = vec3(dots);\n  \n gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "cross grid",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  float horizontalBar=step(.4,mod(vUv.x*30.-.2,1.));\n  float verticalBar=step(.8,mod(vUv.y*30.,1.));\n  float xAxis=verticalBar*horizontalBar;\n  \n  float horizontalBarY=step(.8,mod(vUv.x*30.,1.));\n  float verticalBarY=step(.4,mod(vUv.y*30.-.2,1.));\n  \n  float yAxis=verticalBarY*horizontalBarY;\n  return \n  vec3 color = vec3(yAxis+xAxis);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "min uv",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  float verticalLine=smoothstep(0.,.5,abs(vUv.x-.5));\n  float horizontalLine=smoothstep(0.,.5,abs(vUv.y-.5));\n  float crossLine=min(verticalLine,horizontalLine);\n  vec3 color = vec3(crossLine);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "max uv",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  float verticalLine=smoothstep(0.,.5,abs(vUv.x-.5));\n  float horizontalLine=smoothstep(0.,.5,abs(vUv.y-.5));\n  float crossLine=max(verticalLine,horizontalLine);\n  vec3 color = vec3(crossLine);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "black square",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  float verticalLine=smoothstep(0.,.5,abs(vUv.x-.5));\n  float horizontalLine=smoothstep(0.,.5,abs(vUv.y-.5));\n  float crossLine=max(verticalLine,horizontalLine);\n  float square=step(.3,crossLine);\n  vec3 color = vec3(square);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "square border",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  float verticalLine=smoothstep(0.,.5,abs(vUv.x-.5));\n  float horizontalLine=smoothstep(0.,.5,abs(vUv.y-.5));\n  float crossLine=max(verticalLine,horizontalLine);\n  float square=1.-step(.3,crossLine);\n  float innerSquare=step(.2,crossLine);\n  vec3 color = vec3(square*innerSquare);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "floor uv.x",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  float verticalLines=vUv.x*10.;\n  float roundDownVerticalLines=floor(verticalLines);\n  float remappedVerticalLines=remap(roundDownVerticalLines,0.,10.,0.,1.);\n  vec3 color = vec3(remappedVerticalLines);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "grid floor uv",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  float verticalLines=vUv.x*10.;\n  float roundDownVerticalLines=floor(verticalLines);\n  float remappedVerticalLines=remap(roundDownVerticalLines,0.,10.,0.,1.);\n  \n  float horizontalLines=vUv.y*10.;\n  float roundDownHorizontalLines=floor(horizontalLines);\n  float remappedHorizontalLines=remap(roundDownHorizontalLines,0.,10.,0.,1.);\n  vec3 color = vec3(remappedVerticalLines*remappedHorizontalLines);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "noise uv",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  float noiseUv=random(vUv);\n  vec3 color = vec3(noiseUv);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "grid floor noise uv",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  float verticalLines=vUv.x*10.;\n  float roundDownVerticalLines=floor(verticalLines);\n  float remappedVerticalLines=remap(roundDownVerticalLines,0.,10.,0.,1.);\n  \n  float horizontalLines=vUv.y*10.;\n  float roundDownHorizontalLines=floor(horizontalLines);\n  float remappedHorizontalLines=remap(roundDownHorizontalLines,0.,10.,0.,1.);\n  \n  vec2 gridUv=vec2(remappedVerticalLines,remappedHorizontalLines);\n  float noiseGridUv=random(gridUv);\n  \n  vec3 color = vec3(noiseGridUv);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "tilted grid floor noise uv",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  float verticalLines=vUv.x*10.;\n  float roundDownVerticalLines=floor(verticalLines);\n  float remappedVerticalLines=remap(roundDownVerticalLines,0.,10.,0.,1.);\n  \n  float horizontalLines=(vUv.y+vUv.x)*10.;\n  float roundDownHorizontalLines=floor(horizontalLines);\n  float remappedHorizontalLines=remap(roundDownHorizontalLines,0.,10.,0.,1.);\n  \n  vec2 gridUv=vec2(remappedVerticalLines,remappedHorizontalLines);\n  float noiseGridUv=random(gridUv);\n \n vec3 color = vec3(noiseGridUv);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "length",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  vec3 color = vec3(length(vUv));\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "distance",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  vec3 color = vec3(distance(vUv,vec2(.5)));\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "light lense effect",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  vec3 color = vec3(.015/(distance(vUv,vec2(.5))));\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "star effect",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  // in order to strech it centered you first need to center it by substracting 0.5, then apply the scale (number bigger than 1) and center it again by adding 0.5\n  float horizontalElipse=.15/(distance(vec2(vUv.x,(vUv.y-.5)*10.+.5),vec2(.5)));\n  float verticalEllipse=.15/(distance(vec2((vUv.x-.5)*10.+.5,vUv.y),vec2(.5)));\n  vec3 color = vec3(verticalEllipse*horizontalElipse);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "rotated star",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  vec2 rotatedUv=rotate(vUv,PI/4.,vec2(.5));\n  // in order to strech it centered you first need to center it by substracting 0.5, then apply the scale (number bigger than 1) and center it again by adding 0.5\n  float horizontalElipse=.15/(distance(vec2(rotatedUv.x,(rotatedUv.y-.5)*10.+.5),vec2(.5)));\n  float verticalEllipse=.15/(distance(vec2((rotatedUv.x-.5)*10.+.5,rotatedUv.y),vec2(.5)));\n  vec3 color = vec3(verticalEllipse*horizontalElipse);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "circle",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  // center and multiply by resolution\n  vec2 pixelsUv=(vUv-.5)*uResolution;\n  float circle=step(100.,distance(pixelsUv,vec2(0.)));\n  \n  vec3 color = vec3(circle);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "ring",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n   // center and multiply by resolution\n  vec2 pixelsUv=(vUv-.5)*uResolution;\n  \n  float circle=1.-smoothstep(0.,10.,abs(distance(pixelsUv,vec2(0.))-300.));\n  \n  vec3 color = vec3(circle);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "distorted ring",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  // center and multiply by resolution\n  vec2 distoredtedUv=vec2(vUv.x+sin(20.*vUv.y)*.1,vUv.y+sin(20.*vUv.x)*.1);\n  vec2 pixelsUv=(distoredtedUv-.5)*uResolution;\n  \n  float circle=1.-smoothstep(0.,10.,abs(distance(pixelsUv,vec2(0.))-300.));\n  \n  vec3 color = vec3(circle);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "atan",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  // gets the angle of the vUv between -PI and PI\n  vec3 color = vec3(atan(vUv.x,vUv.y));\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "centered atan",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  // gets the angle of the vUv between -PI and PI centered\n  vec3 color = vec3(atan(vUv.x-.5,vUv.y-.5));\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "remapped atan",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  float angle=atan(vUv.x-.5,vUv.y-.5);\n  angle=remap(angle,-PI,PI,0.,1.);\n  vec3 color = vec3(angle);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "stripes",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  float angle=atan(vUv.x-.5,vUv.y-.5);\n  angle=remap(angle,-PI,PI,0.,1.);\n  float strength=mod(angle*20.,1.);\n  vec3 color = vec3(strength);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "wobble circle",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  vec2 pixelsUv=(vUv-.5)*uResolution;\n    \n  float angle=atan(pixelsUv.x,pixelsUv.y);\n  angle=remap(angle,-PI,PI,0.,1.);\n  float radius=100.+sin(angle*100.)*5.;\n  float strength=1.-step(1.,abs(distance(pixelsUv,vec2(0.))-radius));\n  vec3 color = vec3(strength);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "perlin noise",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  float strength=cnoise(vUv*10.);\n  vec3 color = vec3(strength);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "perlin noise plasma",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  float strength=1.-abs(cnoise(vUv*10.));\n  vec3 color = vec3(strength);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "perlin noise layers",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  float strength=sin(cnoise(vUv*10.)*20.);\n  vec3 color = vec3(strength);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           }
         ]
       },
@@ -177,18 +177,18 @@
         "items": [
           {
             "name": "horizontal line",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvec3 WHITE=vec3(1.);\nvec3 BLACK=vec3(0.);\nvec3 GREEN=vec3(0.,1.,0.);\n\nvoid main(){\n  // taking the abs of vUv.y -0.5 will generate a number between 0 and 0.5 an use a smoothstep to\n  // mix using the line values will use a white color for line values that are 1 and use the black color for lines values 0\n  float line=smoothstep(0.,.002,abs(vUv.y-.5));\n  vec3 color = vec3(mix(BLACK,WHITE,line););\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "lineair line",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvec3 WHITE=vec3(1.);\nvec3 BLACK=vec3(0.);\nvec3 GREEN=vec3(0.,1.,0.);\n\nvoid main(){\n  // taking the abs of vUv.y - vUv.x will generate a straight lineair line\n  float line=smoothstep(0.,.002,(abs(vUv.y-vUv.x)));\n  vec3 color = vec3(mix(BLACK,WHITE,line););\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
             "name": "grid 10x10",
-            "vertex": "",
-            "fragment": ""
+            "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
+            "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvec3 WHITE=vec3(1.);\nvec3 BLACK=vec3(0.);\nvec3 GREEN=vec3(0.,1.,0.);\n\nvec3 drawFunction(vec2 uv,vec3 grid){\n  float linearLine=smoothstep(0.,1.,abs(uv.y-uv.x));\n  \n  // defines how much is 1 cycle\n  vec2 pos=uv;\n  float value2=sin(pos.x/10.)*20.;\n  float functionLine2=smoothstep(0.,1.,abs(pos.y-value2));\n  \n  grid=mix(BLACK,grid,linearLine);\n  grid=mix(BLACK,grid,functionLine2);\n  \n  return grid;\n}\n\nvec3 drawGrid(float cellDimensions){\n  // center uv so when the window resize the grid resizes from the middle\n  vec2 centeredUV=vUv-.5;\n  // remap uv to absolute pixels\n  vec2 uvPixels=centeredUV*uResolution;\n  // define gridlines per cellDimensions pixels\n  float horizontalLines=mod(uvPixels.x,cellDimensions);\n  float verticalLines=mod(uvPixels.y,cellDimensions);\n  float gridLines=min(horizontalLines,verticalLines);\n  \n  // draw lines of 1px\n  float lines=smoothstep(0.,1.,gridLines);\n  vec3 grid=vec3(lines);\n  \n  // define grid axis\n  float axisX=smoothstep(0.,1.,abs(uvPixels.y));\n  float axisY=smoothstep(0.,1.,abs(uvPixels.x));\n  \n  // draw axis\n  grid=mix(BLACK,grid,axisX);\n  grid=mix(BLACK,grid,axisY);\n  \n  //draw lineair line\n  grid=drawFunction(uvPixels,grid);\n  \n  return grid;\n}\n\nvoid main(){\n  vec3 color = drawGrid(10.);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           }
         ]
       }

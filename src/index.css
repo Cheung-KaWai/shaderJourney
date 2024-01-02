@@ -12,6 +12,10 @@ body {
   font-size: 1.6rem;
 }
 
+code {
+  font-size: 1rem;
+}
+
 .hljs-keyword {
   color: red;
 }
