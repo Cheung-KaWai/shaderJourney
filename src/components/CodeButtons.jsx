@@ -7,9 +7,9 @@ import { findElementByName } from "../lib/functions";
 
 export const CodeButtons = () => {
   const { code, updateObject, shader } = useShaderStore();
+  const data = findElementByName(recursionData, shader.name);
 
   const handleCopyClipboard = async () => {
-    const data = findElementByName(recursionData, shader.name);
     try {
       await navigator.clipboard.writeText(data[code.file === 0 ? "fragment" : "vertex"]);
     } catch (err) {
@@ -20,9 +20,12 @@ export const CodeButtons = () => {
   return (
     <CodeButtonsContainer>
       {!code.show && (
-        <Button $selected={code.show} onClick={() => updateObject("code", "show", true)}>
-          Show code
-        </Button>
+        <>
+          <Name>{data.name}</Name>
+          <Button $selected={code.show} onClick={() => updateObject("code", "show", true)}>
+            Show code
+          </Button>
+        </>
       )}
       {code.show && (
         <>
@@ -61,4 +64,10 @@ const Button = styled.button`
   &:last-child {
     margin-left: auto;
   }
+`;
+
+const Name = styled.p`
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 200;
 `;
