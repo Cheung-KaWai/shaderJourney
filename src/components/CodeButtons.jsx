@@ -3,13 +3,13 @@ import styled from "styled-components";
 import { useShaderStore } from "../store/Store";
 import { themeColors } from "../lib/color";
 import recursionData from "../data/recursion.json";
+import { findElementByName } from "../lib/functions";
 
 export const CodeButtons = () => {
   const { code, updateObject, shader } = useShaderStore();
 
   const handleCopyClipboard = async () => {
     const data = findElementByName(recursionData, shader.name);
-
     try {
       await navigator.clipboard.writeText(data[code.file === 0 ? "fragment" : "vertex"]);
     } catch (err) {
