@@ -19,16 +19,18 @@ export const CodeButtons = () => {
 
   return (
     <CodeButtonsContainer>
-      <Button $selected={code.show} onClick={() => updateObject("code", "show", !code.show)}>
-        Show code
-      </Button>
+      {!code.show && (
+        <Button $selected={code.show} onClick={() => updateObject("code", "show", true)}>
+          Show code
+        </Button>
+      )}
       {code.show && (
         <>
-          <Button $selected={code.file === 1} onClick={() => updateObject("code", "file", 1)}>
-            vertex.glsl
-          </Button>
           <Button $selected={code.file === 0} onClick={() => updateObject("code", "file", 0)}>
             fragment.glsl
+          </Button>
+          <Button $selected={code.file === 1} onClick={() => updateObject("code", "file", 1)}>
+            vertex.glsl
           </Button>
           <Button onClick={handleCopyClipboard}>Copy code</Button>
         </>
