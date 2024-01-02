@@ -4,7 +4,7 @@ import { create } from "zustand";
 export const useShaderStore = create((set) => ({
   shader: {
     index: 1.01,
-    name: "uv.x",
+    name: "gradient uv.x",
   },
   code: {
     show: false,

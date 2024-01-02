@@ -6,17 +6,17 @@
         "name": "Basics patterns",
         "items": [
           {
-            "name": "uv.x",
+            "name": "gradient uv.x",
             "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
             "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  vec3 color=vec3(vUv.x);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
-            "name": "uv.y",
+            "name": "gradient uv.y",
             "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
             "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  vec3 color=vec3(vUv.y);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
           {
-            "name": "inverse uv.y",
+            "name": "inverse gradient uv.y",
             "vertex": "varying vec2 vUv;\n\nvoid main(){\n  vec4 modelPosition=modelMatrix*vec4(position,1.);\n  vec4 viewPosition=viewMatrix*modelPosition;\n  vec4 projectedPosition=projectionMatrix*viewPosition;\n  \n  gl_Position=projectedPosition;\n  \n  vUv=uv;\n}",
             "fragment": "varying vec2 vUv;\nuniform vec2 uResolution;\n\n#include helpers.glsl;\n\nvoid main(){\n  vec3 color = 1.-vec3(vUv.y);\n  \n  gl_FragColor=vec4(color,1.);\n}"
           },
