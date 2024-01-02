@@ -70,4 +70,8 @@ const Name = styled.p`
   color: white;
   font-size: 1.4rem;
   font-weight: 200;
+
+  &::first-letter {
+    text-transform: capitalize;
+  }
 `;

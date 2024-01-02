@@ -28,7 +28,7 @@ export const Code = () => {
   );
 };
 
-const CloseContainer = styled.div`
+const CloseContainer = styled.button`
   width: 4rem;
   height: 4rem;
   position: absolute;
@@ -38,6 +38,8 @@ const CloseContainer = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 
   &:hover {
     svg {

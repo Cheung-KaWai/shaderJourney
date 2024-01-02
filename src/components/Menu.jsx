@@ -91,6 +91,7 @@ const HoverSpan = styled.span`
   display: inline-block;
   padding: 0.25rem 1rem;
   position: relative;
+  background-color: ${(props) => (props.$selected ? "#c7417b12" : "transparent")};
   &::before {
     content: "";
     display: inline-block;
