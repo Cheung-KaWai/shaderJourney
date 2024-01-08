@@ -47,5 +47,5 @@ const CanvasContainer = styled.div`
   position: relative;
   /* border-radius: 2rem; */
   overflow: hidden;
-  border: 2px solid ${themeColors.darkBlue};
+  border: 1px solid ${themeColors.darkBlue};
 `;

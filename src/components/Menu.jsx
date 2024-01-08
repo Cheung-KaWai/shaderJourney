@@ -75,7 +75,7 @@ const ContentLength = styled.span`
 
 const MenuContainer = styled.nav`
   width: 25rem;
-  background-color: ${themeColors.darkBlue};
+  background-color: ${themeColors.grayBlue};
   flex-shrink: 0;
   color: white;
   overflow: scroll;
@@ -83,6 +83,8 @@ const MenuContainer = styled.nav`
   &::-webkit-scrollbar {
     display: none;
   }
+
+  border-right: 1px solid ${themeColors.darkBlue};
 `;
 
 const NestedList = styled.ul`
