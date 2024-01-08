@@ -61,6 +61,10 @@ const MenuContainer = styled.nav`
   flex-shrink: 0;
   color: white;
   overflow: scroll;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const NestedList = styled.ul`

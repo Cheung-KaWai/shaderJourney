@@ -63,5 +63,8 @@ const CodeContainer = styled.div`
   overflow: scroll;
   /* border: 3px solid ${themeColors.darkBlue};  */
   /* border-radius: 3rem; */
-  overflow: scroll;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
