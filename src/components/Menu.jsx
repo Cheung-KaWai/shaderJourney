@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useShaderStore } from "../store/Store";
 import recursionData from "../data/recursion.json";
@@ -6,6 +6,11 @@ import { themeColors } from "../lib/color";
 
 const MenuItem = (props) => {
   const { update, shader } = useShaderStore();
+  const [isCollapsed, setCollapsed] = useState(false);
+
+  const toggleCollapse = () => {
+    setCollapsed(!isCollapsed);
+  };
 
   const nestedList = (props.items || []).map((item, index) => (
     <MenuItem
@@ -33,11 +38,12 @@ const MenuItem = (props) => {
   return (
     <>
       <ListItem onClick={props.onClick} $isMenuItem={formattedLevel.length > 1}>
-        <HoverSpan $allowHover={checkMenuItem} $selected={selected}>
+        <HoverSpan $allowHover={checkMenuItem} $selected={selected} onClick={toggleCollapse}>
           <IndexNumber $isMenuItem={checkMenuItem}>{formattedLevel} </IndexNumber>
-          {" " + props.name}
+          <Title>{" " + props.name}</Title>
+          <ContentLength>{isCollapsed && nestedList.length > 0 && ` (${nestedList.length})`}</ContentLength>
         </HoverSpan>
-        {nestedList.length > 0 && <NestedList>{nestedList}</NestedList>}
+        {nestedList.length > 0 && !isCollapsed && <NestedList>{nestedList}</NestedList>}
       </ListItem>
     </>
   );
@@ -54,6 +60,18 @@ export const Menu = () => {
     </MenuContainer>
   );
 };
+
+const Title = styled.span`
+  display: inline-block;
+  &::first-letter {
+    text-transform: uppercase;
+  }
+`;
+
+const ContentLength = styled.span`
+  font-weight: 100;
+  font-size: 1rem;
+`;
 
 const MenuContainer = styled.nav`
   width: 25rem;
@@ -77,14 +95,14 @@ const IndexNumber = styled.span`
   color: ${themeColors.darkPink};
   font-size: 1rem;
   display: inline-block;
-  width: ${(props) => (props.$isMenuItem ? "2rem" : "auto")};
+  width: ${(props) => (props.$isMenuItem ? "2rem" : "1rem")};
   &:hover {
     color: red;
   }
 `;
 
 const ListItem = styled.li`
-  cursor: ${(props) => (props.$isMenuItem ? "pointer" : "default")};
+  cursor: pointer;
   font-weight: 200;
   font-size: 1.2rem;
   padding-left: 0.5rem;

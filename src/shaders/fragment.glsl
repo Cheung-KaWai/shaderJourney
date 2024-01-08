@@ -179,20 +179,70 @@ vec3 getPattern(float number){
     return vec3(verticalEllipse*horizontalElipse);
   }
   else if(number==1.23){
+    // taking the abs of vUv.y -0.5 will generate a number between 0 and 0.5 an use a smoothstep to
+    // mix using the line values will use a white color for line values that are 1 and use the black color for lines values 0
+    float line=smoothstep(0.,.002,abs(vUv.y-.5));
+    return mix(BLACK,WHITE,line);
+  }
+  else if(number==1.24){
+    // taking the abs of vUv.y - vUv.x will generate a straight lineair line
+    float line=smoothstep(0.,.002,(abs(vUv.y-vUv.x)));
+    return mix(BLACK,WHITE,line);
+  }
+  
+  else if(number==1.25){
+    // gets the angle of the vUv between -PI and PI
+    return vec3(atan(vUv.x,vUv.y));
+  }
+  else if(number==1.26){
+    // gets the angle of the vUv -PI and PI centered
+    return vec3(atan(vUv.x-.5,vUv.y-.5));
+  }
+  else if(number==1.27){
+    float angle=atan(vUv.x-.5,vUv.y-.5);
+    angle=remap(angle,-PI,PI,0.,1.);
+    return vec3(angle);
+  }
+  else if(number==1.28){
+    float angle=atan(vUv.x-.5,vUv.y-.5);
+    angle=remap(angle,-PI,PI,0.,1.);
+    float strength=mod(angle*20.,1.);
+    return vec3(strength);
+  }
+  
+  else if(number==1.29){
+    float strength=cnoise(vUv*10.);
+    
+    return vec3(strength);
+  }
+  else if(number==1.30){
+    float strength=1.-abs(cnoise(vUv*10.));
+    
+    return vec3(strength);
+  }
+  
+  else if(number==1.31){
+    float strength=sin(cnoise(vUv*10.)*20.);
+    
+    return vec3(strength);
+  }
+  
+  // section 2
+  else if(number==2.01){
     // center and multiply by resolution
     vec2 pixelsUv=(vUv-.5)*uResolution;
     
     float circle=step(100.,distance(pixelsUv,vec2(0.)));
     return vec3(circle);
-  }
-  else if(number==1.24){
+  }else if(number==2.02){
     // center and multiply by resolution
     vec2 pixelsUv=(vUv-.5)*uResolution;
     
     float circle=1.-smoothstep(0.,10.,abs(distance(pixelsUv,vec2(0.))-300.));
     return vec3(circle);
+    
   }
-  else if(number==1.25){
+  else if(number==2.03){
     // center and multiply by resolution
     vec2 distoredtedUv=vec2(vUv.x+sin(20.*vUv.y)*.1,vUv.y+sin(20.*vUv.x)*.1);
     vec2 pixelsUv=(distoredtedUv-.5)*uResolution;
@@ -200,26 +250,7 @@ vec3 getPattern(float number){
     float circle=1.-smoothstep(0.,10.,abs(distance(pixelsUv,vec2(0.))-300.));
     return vec3(circle);
   }
-  else if(number==1.26){
-    // gets the angle of the vUv between -PI and PI
-    return vec3(atan(vUv.x,vUv.y));
-  }
-  else if(number==1.27){
-    // gets the angle of the vUv -PI and PI centered
-    return vec3(atan(vUv.x-.5,vUv.y-.5));
-  }
-  else if(number==1.28){
-    float angle=atan(vUv.x-.5,vUv.y-.5);
-    angle=remap(angle,-PI,PI,0.,1.);
-    return vec3(angle);
-  }
-  else if(number==1.29){
-    float angle=atan(vUv.x-.5,vUv.y-.5);
-    angle=remap(angle,-PI,PI,0.,1.);
-    float strength=mod(angle*20.,1.);
-    return vec3(strength);
-  }
-  else if(number==1.30){
+  else if(number==2.04){
     vec2 pixelsUv=(vUv-.5)*uResolution;
     
     float angle=atan(pixelsUv.x,pixelsUv.y);
@@ -229,34 +260,7 @@ vec3 getPattern(float number){
     
     return vec3(strength);
   }
-  else if(number==1.31){
-    float strength=cnoise(vUv*10.);
-    
-    return vec3(strength);
-  }
-  else if(number==1.32){
-    float strength=1.-abs(cnoise(vUv*10.));
-    
-    return vec3(strength);
-  }
-  
-  else if(number==1.33){
-    float strength=sin(cnoise(vUv*10.)*20.);
-    
-    return vec3(strength);
-  }
-  
-  // section 2
-  else if(number==2.01){
-    // taking the abs of vUv.y -0.5 will generate a number between 0 and 0.5 an use a smoothstep to
-    // mix using the line values will use a white color for line values that are 1 and use the black color for lines values 0
-    float line=smoothstep(0.,.002,abs(vUv.y-.5));
-    return mix(BLACK,WHITE,line);
-  }else if(number==2.02){
-    // taking the abs of vUv.y - vUv.x will generate a straight lineair line
-    float line=smoothstep(0.,.002,(abs(vUv.y-vUv.x)));
-    return mix(BLACK,WHITE,line);
-  }else if(number==2.03){
+  else if(number==2.05){
     return drawGrid(10.);
   }
   
